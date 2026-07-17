@@ -4,10 +4,11 @@
 - Initial design interview complete; shared understanding reached (2026-07-16).
 - Repo scaffolded with intent-bearing placeholders.
 - `meta/DECISIONS.md` seeded (D1–D23).
+- MVP task 1: `setup.md` orchestration frame + Claude Code path
+  (`harnesses/claude-code.md`) — execution-ready.
 
 ## Next (MVP core, in order)
-1. `setup.md` — Claude Code path (one harness end-to-end; most validating).
-2. `setup.md` — Pi path (native npm packages + Python check + PATH convergence).
+1. `setup.md` — Pi path (native npm packages + Python check + PATH convergence).
 3. `stubs/` finalization + `README.md` cold-start polish.
 4. `diagnose.md` core.
 5. `docs/{stack,benchmarks}` — factual.
