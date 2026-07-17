@@ -1,0 +1,8 @@
+# Minimal, safe ignore patterns. Excludes unambiguous noise only.
+# Opinionated / Drupal-aware patterns are a ROADMAP item.
+.DS_Store
+node_modules/
+vendor/
+dist/
+build/
+*.lock

@@ -1,0 +1,13 @@
+# ai-context-ops is a teaching artifact as much as a tool, so this file is
+# grouped and commented to show *why* each entry is ignored — not just what.
+
+# --- Tool byproducts from the stack this repo installs ---
+# repomix writes a packed-repo file when run ad hoc; it's a build artifact.
+repomix-output.*
+
+# --- Python (uv-managed tools) ---
+.venv/
+__pycache__/
+
+# --- Node (repomix / caveman-shrink via npx) ---
+node_modules/
