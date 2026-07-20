@@ -6,27 +6,14 @@ Checklist for setting up a fresh repo with an optimized agent context stack.
 
 ## 1. Add an ignore file
 
-Copy `stubs/ignore` to the appropriate file for your agent:
-
-| Agent | File |
-|---|---|
-| Claude Code | `.claudeignore` |
-| Gemini | `.geminiignore` |
-| OpenAI Codex | `.agentignore` |
-
+Copy `stubs/ignore` to the ignore file for your agent (e.g. `.claudeignore`).
 Extend it with any project-specific paths (build artifacts, fixtures, vendored
 code) that are large and irrelevant to the agent's work.
 
 ## 2. Add a project context file
 
-Copy `stubs/project-context.md` to the appropriate file for your agent:
-
-| Agent | File |
-|---|---|
-| Claude Code | `CLAUDE.md` |
-| Pi / Gemini | `AGENTS.md` |
-
-Then fill in each section. Keep entries terse and behavioral — the agent acts
+Copy `stubs/project-context.md` to the context file for your agent (e.g.
+`CLAUDE.md` or `AGENTS.md`). Then fill in each section. Keep entries terse and behavioral — the agent acts
 on what's here, so every token should change its behavior or save it work.
 
 **`## Key paths`** — where things live that the agent can't easily infer from

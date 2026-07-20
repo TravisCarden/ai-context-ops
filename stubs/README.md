@@ -8,7 +8,7 @@ an existing file.
 |---|---|---|
 | [`global-context.md`](global-context.md) | `~/.claude/CLAUDE.md`, `~/.pi/agent/AGENTS.md`, etc. | User-level instructions applied to every session across all projects |
 | [`project-context.md`](project-context.md) | `./CLAUDE.md`, `./AGENTS.md`, etc. (repo root) | Per-project context: paths, conventions, notes specific to one repo |
-| [`ignore`](ignore) | `.claudeignore`, `.geminiignore`, etc. (repo root) | Tells the agent which files/dirs to skip when reading the codebase |
+| [`ignore`](ignore) | `.claudeignore`, etc. (repo root) | Tells the agent which files/dirs to skip when reading the codebase |
 
 **Rules the harnesses follow (and you should too):**
 - Never overwrite an existing file — merge manually instead.
