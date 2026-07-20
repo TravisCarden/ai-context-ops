@@ -28,4 +28,15 @@ Read https://raw.githubusercontent.com/TravisCarden/ai-context-ops/main/setup.md
 It will ask which harness(es) to set up (Claude Code, Pi, or both) and walk the
 rest, with an option to accept the plan or abort before making changes.
 
+## Repo layout
+
+| Path | What it is |
+|---|---|
+| [`setup.md`](setup.md) | Entry point — the prompt you give your agent |
+| [`diagnose.md`](diagnose.md) | Measures token savings and helps debug the stack post-setup |
+| [`harnesses/`](harnesses/) | Per-agent setup steps called by [`setup.md`](setup.md) |
+| [`stubs/`](stubs/) | Starter templates for context and ignore files — **read these to understand what gets deployed** |
+| [`playbooks/`](playbooks/) | Recipes for recurring tasks (new project, maintenance, …) |
+| [`meta/`](meta/) | Project decisions and status |
+
 <!-- TODO(mvp): flesh out — what this is, what it installs, what value it adds. -->
