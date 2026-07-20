@@ -1,5 +1,5 @@
 ## Key paths
 
-## Conventions
+## Patterns
 
-## Notes
+## Out of scope
