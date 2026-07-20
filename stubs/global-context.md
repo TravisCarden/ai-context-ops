@@ -4,5 +4,6 @@
 - **Critique:** Challenge my ideas/code if flawed or a simpler path exists
 - **Style:** Write minimal, idiomatic code matching existing project patterns
 - **Output:** NO placeholders (`// ...`); write full code replacements
+- **Shell:** Prefer bash to Python for commands unless Python is clearly warranted
 - **Search:** Use Serena/RTK instead of `grep`/`cat`/`find` to save tokens
 - **Scope:** Respect `context-mode` boundaries to keep session lean
