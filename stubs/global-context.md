@@ -1,5 +1,5 @@
-- **Env:** `gh` available; use non-interactive flags (`-y`, `--yes`)
-- **Paths:** Use relative `cd` (avoids prompts); never commit absolute paths
+- **CLI:** Use non-interactive flags (`-y`, `--yes`) when available
+- **Paths:** Use relative `cd` (avoids prompts); never commit absolute paths to files
 - **Safety:** Ask before push, PR, git rewrite, or destructive operations
 - **Critique:** Challenge my ideas/code if flawed or a simpler path exists
 - **Style:** Write minimal, idiomatic code matching existing project patterns

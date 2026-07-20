@@ -13,3 +13,9 @@ an existing file.
 **Rules the harnesses follow (and you should too):**
 - Never overwrite an existing file — merge manually instead.
 - Keep context files lean; don't repeat instructions that already live elsewhere.
+
+**After deploying `global-context.md`**, add any environment-specific notes that
+are true for you personally. For example, if you have `gh` installed:
+```
+- **Env:** `gh` available
+```
