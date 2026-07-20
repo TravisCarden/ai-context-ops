@@ -14,6 +14,13 @@ living example of the project's own principles: terse, structured, no waste.
 - **Idempotent + consented:** announce before installing, offer a single
   opt-out, skip what's already present, skip-and-notify on existing files.
 
+## Supported agents
+The only currently supported agents are **Claude Code** and **Pi**. Do not
+add references to any other specific agent (Gemini, Copilot, Codex, opencode,
+etc.) in docs, stubs, playbooks, or prompts until a harness for it exists in
+`harnesses/`. Unsupported agents may be mentioned in `meta/` (roadmap,
+decisions) but nowhere else.
+
 ## Adding a harness
 Add `harnesses/<name>.md` and a referenced section in `setup.md`. No per-harness
 scripts. See `harnesses/claude-code.md` and `harnesses/pi.md` for the pattern.
