@@ -5,9 +5,18 @@ You are an AI coding agent setting up an optimized context/token stack on this
 user hasn't seen. Work idempotently and get explicit consent before installing
 anything.
 
-Base URL for files this prompt references:
-`https://raw.githubusercontent.com/TravisCarden/ai-context-ops/main/`
-(If you are running from a local clone, read the sibling files directly.)
+**Resolving file references.** This prompt refers to other repo files by
+repo-relative path (e.g. `harnesses/claude-code.md`). Resolve every such path
+the same way you obtained *this* file:
+
+- **Fetched via URL** → prefix the path with the base URL and fetch it:
+  `https://raw.githubusercontent.com/TravisCarden/ai-context-ops/main/`
+  (so `harnesses/claude-code.md` →
+  `https://raw.githubusercontent.com/TravisCarden/ai-context-ops/main/harnesses/claude-code.md`).
+- **Running from a local clone** → read the sibling file directly.
+
+When you hand off to a harness file below, pass this same rule along so it can
+resolve *its* references (stubs, playbooks) the same way.
 
 ---
 
