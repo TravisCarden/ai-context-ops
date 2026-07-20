@@ -5,7 +5,9 @@ Authoritative, execution-ready steps for the Claude Code path. Called by
 
 **Rules (inherited from setup.md):** idempotent — check first with each tool's
 own CLI and skip if present; never overwrite an existing config file (skip and
-notify). Announce nothing new here that wasn't in the Step 3 plan.
+notify). Announce nothing new here that wasn't in the Step 3 plan. Resolve any
+repo-relative path (e.g. `stubs/project-context.md`) the same way you obtained this
+file: prefix with the base URL if fetched via URL, else read the local sibling.
 
 ---
 
@@ -65,8 +67,8 @@ claude mcp add caveman-shrink -s user -- npx caveman-shrink
 ## 8. Global context file (skip-and-notify)
 Claude Code needs no hand-written RTK rules (step 5). If you have global content
 to place at `~/.claude/CLAUDE.md`: only create it if absent. If it already
-exists, **do not overwrite** — tell the user and point them at
-`stubs/project-context` for per-project use.
+exists, **do not overwrite** — tell the user to merge `stubs/global-context.md`
+manually. For per-project context, point them at `stubs/project-context.md`.
 
 ## 9. Verify
 ```

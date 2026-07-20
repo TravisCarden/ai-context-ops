@@ -103,7 +103,7 @@ Drupal-aware patterns → ROADMAP.
 ## D17 — Context files: no duplication
 - Global RTK rules are NOT hand-written: `rtk init` auto-places `~/.claude/
   RTK.md` + hook for Claude Code; Pi uses Hypa. No generic global RTK stub.
-- `stubs/project-context` is a terse skeleton; omits anything the tools/harness
+- `stubs/project-context.md` is a terse skeleton; omits anything the tools/harness
   already provide. Duplication conflicts with the project's optimization goal.
 - Human process (repomix scoping, headroom-learn cadence) lives in playbooks,
   not agent instructions.
