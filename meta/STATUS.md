@@ -9,11 +9,11 @@
 
 ## Next (MVP core, in order)
 1. `setup.md` — Pi path (native npm packages + Python check + PATH convergence).
-3. `stubs/` finalization + `README.md` cold-start polish.
-4. `diagnose.md` core.
-5. `docs/{stack,benchmarks}` — factual.
-6. `playbooks/{maintenance, prompting[accepted], new-project}`.
-7. `meta/STATUS.md` + `ROADMAP.md` refresh once building reality.
+2. `stubs/` finalization + `README.md` cold-start polish.
+3. `diagnose.md` core.
+4. `docs/{stack,benchmarks}` — factual.
+5. `playbooks/{maintenance, prompting[accepted], new-project}`.
+6. `meta/STATUS.md` + `ROADMAP.md` refresh once building reality.
 
 ## Blocked / deferred
 - Review-PR items (see DECISIONS D22).
