@@ -23,7 +23,6 @@ A session has four points where tokens accumulate:
 ║  LAYER 1 · INPUT                                           ║
 ╟------------------------------------------------------------╢
 ║  LeanCTX — AST-maps source files instead of dumping raw    ║
-║  repomix — packs scoped repo subsets on demand             ║
 ║  stubs   — concise, stable context files (global/project)  ║
 ╠════════════════════════════════════════════════════════════╣
 ║  LAYER 2 · TOOL RESULTS                                    ║
@@ -48,7 +47,7 @@ A session has four points where tokens accumulate:
 **Data flow — one session:**
 
 1. You write a prompt
-2. Agent reads context files and source → **LeanCTX / repomix / stubs** reduce this
+2. Agent reads context files and source → **LeanCTX / stubs** reduce this
 3. Agent calls tools → results return → **Headroom + RTK/pi-hypa** compress and filter
 4. Agent replies → **caveman** suppresses verbosity
 5. Provider caches the stable prefix → **Headroom hooks** maintain stability between turns
@@ -59,15 +58,14 @@ A session has four points where tokens accumulate:
 
 | Tool | Layer | What it does |
 |---|---|---|
-| **Headroom** | Tool results + cache | Compresses MCP tool results via proxy; durable hook placement keeps the prompt prefix stable for provider caching. Neural (Kompress) compression enabled via `[all]` install. |
-| **RTK** *(Claude Code)* | Tool results | Filters noisy CLI/tool output before it enters the context window. Wired via `rtk init --global` + PreToolUse hook. |
-| **pi-hypa** *(Pi)* | Tool results | Pi-native equivalent of RTK. Installed as a Pi plugin. |
-| **LeanCTX / pi-lean-ctx** | Input | AST-maps source files — agent reads a compact symbol map instead of raw file bytes. First-party (LeanCTX author). |
-| **caveman** | Agent replies | Suppresses over-verbose agent responses. Installed as a plugin on both harnesses. |
-| **caveman-shrink** | Tool results | Compresses MCP tool *descriptions* (the schema overhead each tool carries), not just results. Registered as a user-scoped MCP server. |
-| **repomix** | Input | When an agent needs to read a large slice of the codebase, it normally reads files one at a time — each read is a tool call that burns tokens on overhead. repomix packs a scoped subset into one artifact the agent reads in a single pass. The key is scoping: `--include` narrows the pack to only what the task needs. Without scoping it's a firehose, not a filter. |
+| [**Headroom**](https://headroom-docs.vercel.app) | Tool results + cache | Compresses MCP tool results via proxy; durable hook placement keeps the prompt prefix stable for provider caching. Neural (Kompress) compression enabled via `[all]` install. |
+| [**RTK**](https://www.rtk-ai.app/) *(Claude Code)* | Tool results | Filters noisy CLI/tool output before it enters the context window. Wired via `rtk init --global` + PreToolUse hook. |
+| [**pi-hypa**](https://github.com/Hypabolic/Hypa#readme) *(Pi)* | Tool results | Pi-native equivalent of RTK. Installed as a Pi plugin. |
+| [**LeanCTX**](https://leanctx.com) / [**pi-lean-ctx**](https://leanctx.com) | Input | AST-maps source files — agent reads a compact symbol map instead of raw file bytes. First-party (LeanCTX author). |
+| [**caveman**](https://github.com/JuliusBrussee/caveman) | Agent replies | Suppresses over-verbose agent responses. Installed as a plugin on both harnesses. |
+| [**caveman-shrink**](https://github.com/JuliusBrussee/caveman) | Tool results | Compresses MCP tool *descriptions* (the schema overhead each tool carries), not just results. Registered as a user-scoped MCP server. |
 | **Serena** | Input | LSP-aware symbol search — bundled via Headroom. Lets the agent navigate code without `grep`/`cat` file dumps. Registered automatically by `headroom init`. |
-| **Context stubs** | Input | Concise, stable context files (`global-context.md`, `project-context.md`) deployed to the agent's config directory. Stable content = better cache hits. |
+| **Context stubs** | Input | Concise, stable context files ([`stubs/global-context.md`](../stubs/global-context.md), [`stubs/project-context.md`](../stubs/project-context.md)) deployed to the agent's config directory. Stable content = better cache hits. |
 
 ---
 
@@ -83,7 +81,6 @@ Most of the stack is shared. The differences are plugin/hook wiring only:
 | caveman | `claude plugin install caveman@caveman` | `pi install npm:pi-caveman` |
 | caveman-shrink | `claude mcp add caveman-shrink -s user -- npx caveman-shrink` | — |
 | Serena | Registered by `headroom init claude` | Registered by pi-headroom |
-| repomix | `brew install repomix` | `brew install repomix` |
 
 ---
 
@@ -99,7 +96,6 @@ Some tools run automatically once installed; others require deliberate use.
 - Serena (available as a tool; agent calls it instead of grep)
 
 **Active — you drive these:**
-- `repomix --include <path>` — scope and pack before a large read
 - `headroom learn --apply` — run after significant debugging sessions to update the compression model
 - Context stubs — you fill in [`stubs/project-context.md`](../stubs/project-context.md) per repo; you extend [`stubs/global-context.md`](../stubs/global-context.md) with your environment
 - [`diagnose.md`](../diagnose.md) prompt — run periodically to measure savings and catch regressions

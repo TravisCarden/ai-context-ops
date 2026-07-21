@@ -38,7 +38,7 @@ Report a short table of what is already present, so nothing is reinstalled:
 
 - `brew --version`, `uv --version`, `python3 --version` (need ≥ 3.10 for Pi)
 - Which harnesses exist: `claude --version`, `pi --version`
-- Which tools exist: `rtk --version`, `repomix --version`, `headroom --version`
+- Which tools exist: `rtk --version`, `headroom --version`
 
 Do not install anything in this step.
 
@@ -60,7 +60,6 @@ install for their chosen harness(es), and call out global software explicitly:
 *Claude Code path:*
 - **Homebrew** — if missing (`https://brew.sh`)
 - **rtk** — `brew install rtk` (output filtering; drops `~/.claude/RTK.md` + hook)
-- **repomix** — `brew install repomix` (scoped repo packing)
 - **uv** — `brew install uv` (Python tool manager, for Headroom)
 - **Headroom `[all]`** — `uv tool install "headroom-ai[all]"` (~2–3 GB, shared
   across harnesses; Apple Silicon best, graceful fallback on Intel)

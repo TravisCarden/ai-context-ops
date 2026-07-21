@@ -9,5 +9,5 @@ repomix-output.*
 .venv/
 __pycache__/
 
-# --- Node (repomix / caveman-shrink via npx) ---
+# --- Node (caveman-shrink via npx) ---
 node_modules/

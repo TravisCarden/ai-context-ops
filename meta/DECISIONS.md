@@ -66,7 +66,7 @@ half-working. opencode's unresolved proxy wiring stays deferred.
 party integrations must be de-facto-standard / reputable / safe.
 
 ## D12 — Claude Code wiring
-Official tool installers: `brew` (rtk, repomix), `uv` (headroom[all]),
+Official tool installers: `brew` (rtk), `uv` (headroom[all]),
 `rtk init --global`, `headroom init claude`, `claude plugin install
 caveman@caveman`, `claude mcp add caveman-shrink`. Idempotency via each tool's
 CLI. Serena left to headroom.
@@ -105,7 +105,7 @@ Drupal-aware patterns → ROADMAP.
   RTK.md` + hook for Claude Code; Pi uses Hypa. No generic global RTK stub.
 - `stubs/project-context.md` is a terse skeleton; omits anything the tools/harness
   already provide. Duplication conflicts with the project's optimization goal.
-- Human process (repomix scoping, headroom-learn cadence) lives in playbooks,
+- Human process (headroom-learn cadence) lives in playbooks,
   not agent instructions.
 
 ## D18 — Serena left to headroom

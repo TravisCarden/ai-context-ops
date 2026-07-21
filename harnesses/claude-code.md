@@ -19,7 +19,6 @@ is on PATH for the current shell before continuing.
 Install only the ones Step 1 reported missing. Check before each:
 ```
 rtk --version     || brew install rtk        # output filtering (drops ~/.claude/RTK.md + hook)
-repomix --version || brew install repomix    # scoped repo packing
 uv --version      || brew install uv         # Python tool manager (for Headroom)
 ```
 
