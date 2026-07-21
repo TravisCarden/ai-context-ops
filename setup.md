@@ -5,20 +5,33 @@ You are an AI coding agent setting up an optimized context/token stack on this
 user hasn't seen. Work idempotently and get explicit consent before installing
 anything.
 
-**Resolving file references.** This prompt refers to other repo files by
-repo-relative path (e.g. `harnesses/claude-code.md`). Resolve every such path
-the same way you obtained *this* file:
-
-- **Fetched via URL** → prefix the path with the base URL and fetch it:
-  `https://raw.githubusercontent.com/TravisCarden/ai-context-ops/main/`
-  (so `harnesses/claude-code.md` →
-  `https://raw.githubusercontent.com/TravisCarden/ai-context-ops/main/harnesses/claude-code.md`).
-- **Running from a local clone** → read the sibling file directly.
-
-When you hand off to a harness file below, pass this same rule along so it can
-resolve *its* references (stubs, playbooks) the same way.
+This setup needs several sibling files (harness paths, stubs, playbooks) that
+live alongside this one in the repo. To avoid a fan-out of unannounced web
+requests, get the whole repo **once** with a single, read-only download, then
+read every other file locally.
 
 ---
+
+## Step 0 — Get a local copy of the repo (one download)
+
+Determine your **repo root** and use it for every repo-relative path from here
+on (e.g. `harnesses/claude-code.md` → `<repo-root>/harnesses/claude-code.md`):
+
+- **If you are already running from a local clone** → the repo root is that
+  clone. Skip the download.
+- **Otherwise** (you fetched this file from a URL) → tell the user you are
+  making one small, read-only clone to a temp dir, then run:
+
+  ```
+  git clone --depth 1 https://github.com/TravisCarden/ai-context-ops \
+    /tmp/ai-context-ops || git -C /tmp/ai-context-ops pull --ff-only
+  ```
+
+  The repo root is `/tmp/ai-context-ops`. This is idempotent: if it already
+  exists it fast-forwards instead of failing. (It is removed in Step 5.)
+
+Read all subsequent files by **absolute path** under the repo root — do not
+issue further web requests for repo files.
 
 ## Step 1 — Detect the environment (no changes yet)
 
@@ -61,8 +74,10 @@ If the user declines, stop cleanly. Re-running later is safe (idempotent).
 
 ## Step 4 — Run the chosen harness path(s)
 
-- **Claude Code** → follow `harnesses/claude-code.md`.
-- **Pi** → follow `harnesses/pi.md`.
+- **Claude Code** → follow `<repo-root>/harnesses/claude-code.md`.
+- **Pi** → follow `<repo-root>/harnesses/pi.md`.
+
+(`<repo-root>` is what you established in Step 0 — read it as a local file.)
 
 Apply these rules throughout every path:
 - **Idempotent:** check first (prefer each tool's own CLI), skip if present.
@@ -76,8 +91,12 @@ Apply these rules throughout every path:
 After setup, confirm each installed piece responds (e.g. `headroom --version`,
 `rtk --version`, `claude mcp list`, `pi config -l`). Then tell the user:
 
-- To measure effectiveness or debug savings later:
-  `Read <base-url>diagnose.md and follow it`.
-- Per-project setup (ignore files, project context): see
-  `playbooks/new-project.md`.
-- Ongoing hygiene (learn cadence, updates): see `playbooks/maintenance.md`.
+- To measure effectiveness or debug savings later, in a fresh session:
+  `Read https://raw.githubusercontent.com/TravisCarden/ai-context-ops/main/diagnose.md and follow it`.
+- Per-project setup (ignore files, project context):
+  `https://raw.githubusercontent.com/TravisCarden/ai-context-ops/main/playbooks/new-project.md`.
+- Ongoing hygiene (learn cadence, updates):
+  `https://raw.githubusercontent.com/TravisCarden/ai-context-ops/main/playbooks/maintenance.md`.
+
+Finally, if you created the temp clone in Step 0, remove it:
+`rm -rf /tmp/ai-context-ops`. (Skip this if you ran from the user's own clone.)

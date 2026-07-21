@@ -5,9 +5,9 @@ Authoritative, execution-ready steps for the Claude Code path. Called by
 
 **Rules (inherited from setup.md):** idempotent — check first with each tool's
 own CLI and skip if present; never overwrite an existing config file (skip and
-notify). Announce nothing new here that wasn't in the Step 3 plan. Resolve any
-repo-relative path (e.g. `stubs/project-context.md`) the same way you obtained this
-file: prefix with the base URL if fetched via URL, else read the local sibling.
+notify). Announce nothing new here that wasn't in the Step 3 plan. Any
+repo-relative path here (e.g. `stubs/project-context.md`) is a local file under
+the repo root established in Step 0 — read it directly, no web requests.
 
 ---
 
