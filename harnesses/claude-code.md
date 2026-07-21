@@ -16,13 +16,12 @@ Check: `command -v brew`. If absent, install per <https://brew.sh> and ensure it
 is on PATH for the current shell before continuing.
 
 ## 2. CLI tools via Homebrew
-Install only the ones Step 1 reported missing:
+Install only the ones Step 1 reported missing. Check before each:
 ```
-brew install rtk        # output filtering (auto-installs ~/.claude/RTK.md + hook)
-brew install repomix    # scoped repo packing
-brew install uv         # Python tool manager (for Headroom)
+rtk --version     || brew install rtk        # output filtering (drops ~/.claude/RTK.md + hook)
+repomix --version || brew install repomix    # scoped repo packing
+uv --version      || brew install uv         # Python tool manager (for Headroom)
 ```
-Check first: `rtk --version`, `repomix --version`, `uv --version`.
 
 ## 3. Headroom (ML compression) via uv
 Shared across harnesses. Skip if `headroom` is already on PATH.
@@ -42,12 +41,11 @@ Idempotent by design; safe to re-run.
 
 ## 5. RTK → Claude Code
 `brew install rtk` already dropped `~/.claude/RTK.md` and a PreToolUse hook.
-Ensure global wiring:
+Ensure global wiring (idempotent):
 ```
 rtk init --global
 ```
-Because RTK handles command substitution via its hook, **do not** hand-write RTK
-substitution rules into any context file for Claude Code.
+**Do not** hand-write RTK substitution rules into any context file — the hook handles that.
 
 ## 6. caveman (output verbosity)
 Install the plugin via caveman's Claude Code flow. Check first:
@@ -64,11 +62,12 @@ Register as a user-scoped MCP server. Check first:
 claude mcp add caveman-shrink -s user -- npx caveman-shrink
 ```
 
-## 8. Global context file (skip-and-notify)
-Claude Code needs no hand-written RTK rules (step 5). If you have global content
-to place at `~/.claude/CLAUDE.md`: only create it if absent. If it already
-exists, **do not overwrite** — tell the user to merge `stubs/global-context.md`
-manually. For per-project context, point them at `stubs/project-context.md`.
+## 8. Global context file
+Deploy `<repo-root>/stubs/global-context.md` → `~/.claude/CLAUDE.md`.
+- If absent: copy it.
+- If present: **do not overwrite** — notify the user and tell them to merge
+  `<repo-root>/stubs/global-context.md` manually.
+For per-project context, point them at `<repo-root>/stubs/project-context.md`.
 
 ## 9. Verify
 ```

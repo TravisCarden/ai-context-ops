@@ -19,8 +19,7 @@ on (e.g. `harnesses/claude-code.md` → `<repo-root>/harnesses/claude-code.md`):
 
 - **If you are already running from a local clone** → the repo root is that
   clone. Skip the download.
-- **Otherwise** (you fetched this file from a URL) → tell the user you are
-  making one small, read-only clone to a temp dir, then run:
+- **Otherwise** (you fetched this file from a URL) → run:
 
   ```
   git clone --depth 1 https://github.com/TravisCarden/ai-context-ops \
@@ -33,7 +32,7 @@ on (e.g. `harnesses/claude-code.md` → `<repo-root>/harnesses/claude-code.md`):
 Read all subsequent files by **absolute path** under the repo root — do not
 issue further web requests for repo files.
 
-## Step 1 — Detect the environment (no changes yet)
+## Step 1 — Detect the environment
 
 Report a short table of what is already present, so nothing is reinstalled:
 
@@ -58,16 +57,19 @@ Only proceed with the chosen harness path(s).
 Before installing anything, show the user the full list of what you will
 install for their chosen harness(es), and call out global software explicitly:
 
-- **Homebrew** — installed only if missing (`https://brew.sh`).
-- **uv** — Python tool manager (`brew install uv`), used to install Headroom in
-  isolation.
-- **Headroom `[all]`** — includes neural ML compression. **~2–3 GB download**,
-  best on Apple Silicon (falls back gracefully on Intel). Recommended: it is the
-  core of the compression gain, especially on large, complex codebases like
-  Drupal. This install is shared by both harnesses.
-- **caveman** — installs via its standard `curl | bash` (Claude Code path) or
-  `pi install` (Pi path). The `curl | bash` is caveman's normal, documented
-  install method.
+*Claude Code path:*
+- **Homebrew** — if missing (`https://brew.sh`)
+- **rtk** — `brew install rtk` (output filtering; drops `~/.claude/RTK.md` + hook)
+- **repomix** — `brew install repomix` (scoped repo packing)
+- **uv** — `brew install uv` (Python tool manager, for Headroom)
+- **Headroom `[all]`** — `uv tool install "headroom-ai[all]"` (~2–3 GB, shared
+  across harnesses; Apple Silicon best, graceful fallback on Intel)
+- **caveman** — `claude plugin marketplace add` / `claude plugin install`
+- **caveman-shrink** — `claude mcp add caveman-shrink -s user -- npx caveman-shrink`
+
+*Pi path:*
+- **Homebrew / uv / Headroom `[all]`** — same as above
+- **pi-hypa, pi-lean-ctx, pi-caveman, pi-headroom** — via `pi install npm:…`
 
 Skip anything Step 1 found already present. Then ask once: **Proceed? [Y/n]**.
 If the user declines, stop cleanly. Re-running later is safe (idempotent).
@@ -98,5 +100,8 @@ After setup, confirm each installed piece responds (e.g. `headroom --version`,
 - Ongoing hygiene (learn cadence, updates):
   `https://raw.githubusercontent.com/TravisCarden/ai-context-ops/main/playbooks/maintenance.md`.
 
-Finally, if you created the temp clone in Step 0, remove it:
-`rm -rf /tmp/ai-context-ops`. (Skip this if you ran from the user's own clone.)
+**If you created the temp clone in Step 0**, remove it now:
+```
+rm -rf /tmp/ai-context-ops
+```
+Skip this if you ran from the user's own clone.
