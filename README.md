@@ -19,6 +19,8 @@ You need one supported AI coding agent. If you don't have one:
 - **Pi** — <https://pi.dev>
 - **Any other agent** — <https://github.com/JuliusBrussee/caveman/blob/main/INSTALL.md#per-agent-install>
 
+Before running setup, read [`docs/stack.md`](docs/stack.md) for a 5-minute orientation — what each tool does, where it fits in the stack, and what runs automatically vs. what you drive. It makes the setup choices meaningful rather than mechanical.
+
 Then point your agent at the setup prompt:
 
 ```
@@ -37,6 +39,7 @@ rest, with an option to accept the plan or abort before making changes.
 | [`harnesses/`](harnesses/) | Per-agent setup steps called by [`setup.md`](setup.md) |
 | [`stubs/`](stubs/) | Starter templates for context and ignore files — **read these to understand what gets deployed** |
 | [`playbooks/`](playbooks/) | Recipes for recurring tasks (new project, maintenance, …) |
+| [`docs/stack.md`](docs/stack.md) | How the stack works — layers, components, per-harness variance, active vs. passive |
 | [`meta/`](meta/) | Project decisions and status |
 
-<!-- TODO(mvp): flesh out — what this is, what it installs, what value it adds. -->
+
