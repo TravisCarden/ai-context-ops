@@ -27,45 +27,17 @@ The setup prompt detects what you already have, shows you the full install plan,
 
 ## How it works
 
-```
-╔════════════════════════════════════════════════════════════╗
-║  LAYER 1 · INPUT                                           ║
-╟------------------------------------------------------------╢
-║  LeanCTX — AST-maps source files instead of dumping raw    ║
-║  stubs   — concise, stable context files (global/project)  ║
-╠════════════════════════════════════════════════════════════╣
-║  LAYER 2 · TOOL RESULTS                                    ║
-║  (MCP / CLI output returning to the agent)                 ║
-╟------------------------------------------------------------╢
-║  Headroom       — compresses results via MCP proxy         ║
-║  RTK / pi-hypa  — filters CLI output noise before it lands ║
-╠════════════════════════════════════════════════════════════╣
-║  LAYER 3 · AGENT REPLIES                                   ║
-╟------------------------------------------------------------╢
-║  caveman — suppresses over-verbose agent responses         ║
-╠════════════════════════════════════════════════════════════╣
-║  LAYER 4 · CACHE                                           ║
-║  (provider-side prompt cache)                              ║
-╟------------------------------------------------------------╢
-║  Headroom durable hooks keep the prefix stable so the      ║
-║  cache key doesn't break between turns                     ║
-╚════════════════════════════════════════════════════════════╝
-```
+The stack intercepts token waste at four points in every session:
 
-### Components
-
-| Tool | Layer | What it does |
+| Layer | Problem | Tools |
 |---|---|---|
-| [**Headroom**](https://headroom-docs.vercel.app) | Tool results + cache | Compresses MCP tool results via proxy; durable hook placement keeps the prompt prefix stable for provider caching. Neural (Kompress) compression via `[all]` install. |
-| [**RTK**](https://www.rtk-ai.app/) *(Claude Code)* | Tool results | Filters noisy CLI/tool output before it enters the context window. Wired via `rtk init --global` + PreToolUse hook. |
-| [**pi-hypa**](https://github.com/Hypabolic/Hypa#readme) *(Pi)* | Tool results | Pi-native equivalent of RTK. Installed as a Pi plugin. |
-| [**LeanCTX**](https://leanctx.com) / [**pi-lean-ctx**](https://leanctx.com) | Input | AST-maps source files — agent reads a compact symbol map instead of raw file bytes. |
-| [**caveman**](https://github.com/JuliusBrussee/caveman) | Agent replies | Suppresses over-verbose agent responses. |
-| **Serena** | Input | LSP-aware symbol search — bundled via Headroom. Lets the agent navigate code without `grep`/`cat` file dumps. |
+| **Input** | Agent reads raw file bytes and repeats symbol discovery | [LeanCTX](https://leanctx.com) (AST maps), Serena (LSP search), stubs (stable context files) |
+| **Tool results** | MCP and CLI output floods the context window | [Headroom](https://headroom-docs.vercel.app) (compresses MCP results), [RTK](https://www.rtk-ai.app/) / [pi-hypa](https://github.com/Hypabolic/Hypa#readme) (filters CLI output) |
+| **Agent replies** | Agent responds with more words than the task needs | [caveman](https://github.com/JuliusBrussee/caveman) (verbosity suppression) |
+| **Cache** | Dynamic prefixes break provider-side prompt caching | Headroom durable hooks (keep prefix stable between turns) |
 
-Most tools are **passive** — once installed, they intercept automatically. One
-requires deliberate use: `headroom learn --apply` (run after significant
-debugging sessions to update the compression model).
+All tools are passive once installed. One exception: run `headroom learn --apply`
+after significant debugging sessions to update the compression model.
 
 ---
 
