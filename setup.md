@@ -5,8 +5,8 @@ You are an AI coding agent setting up an optimized context/token stack on this
 user hasn't seen. Work idempotently and get explicit consent before installing
 anything.
 
-This setup needs several sibling files (harness paths, stubs, playbooks) that
-live alongside this one in the repo. To avoid a fan-out of unannounced web
+This setup needs several sibling files (harness paths, stubs) that live
+alongside this one in the repo. To avoid a fan-out of unannounced web
 requests, get the whole repo **once** with a single, read-only download, then
 read every other file locally.
 
@@ -94,10 +94,6 @@ After setup, confirm each installed piece responds (e.g. `headroom --version`,
 
 - To measure effectiveness or debug savings later, in a fresh session:
   `Read https://raw.githubusercontent.com/TravisCarden/ai-context-ops/main/diagnose.md and follow it`.
-- Per-project setup (ignore files, project context):
-  `https://raw.githubusercontent.com/TravisCarden/ai-context-ops/main/playbooks/new-project.md`.
-- Ongoing hygiene (learn cadence, updates):
-  `https://raw.githubusercontent.com/TravisCarden/ai-context-ops/main/playbooks/maintenance.md`.
 
 **If you created the temp clone in Step 0**, remove it now:
 ```
