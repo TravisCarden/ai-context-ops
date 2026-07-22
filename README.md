@@ -11,20 +11,6 @@ that intercept those waste streams at the layer where they originate.
 
 ---
 
-## Quick setup
-
-Paste this into your agent (Claude Code or Pi):
-
-```
-Read https://raw.githubusercontent.com/TravisCarden/ai-context-ops/main/setup.md and follow it.
-```
-
-Or from a local clone, open [`setup.md`](setup.md) and prompt your agent to read and follow it.
-
-The setup prompt detects what you already have, shows you the full install plan, asks once for consent, and skips anything already present. It is safe to re-run.
-
----
-
 ## How it works
 
 The stack intercepts token waste at four points in every session:
@@ -38,6 +24,22 @@ The stack intercepts token waste at four points in every session:
 
 All tools are passive once installed. One exception: run `headroom learn --apply`
 after significant debugging sessions to update the compression model.
+
+---
+
+## Quick setup
+
+Paste this into your agent (Claude Code or Pi):
+
+```
+Read https://raw.githubusercontent.com/TravisCarden/ai-context-ops/main/setup.md and follow it.
+```
+
+Or from a local clone, open [`setup.md`](setup.md) and prompt your agent to read
+and follow it.
+
+The setup prompt detects what you already have, shows you the full install plan,
+asks once for consent, and skips anything already present. It is safe to re-run.
 
 ---
 
