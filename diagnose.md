@@ -76,7 +76,7 @@ Verify each tool responds:
 headroom --version
 rtk --version
 claude plugin list        # should include: caveman
-claude mcp list           # should include: caveman-shrink, headroom/serena
+claude mcp list           # should include: headroom/serena
 ```
 
 **Pi:**

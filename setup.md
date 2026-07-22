@@ -64,7 +64,6 @@ install for their chosen harness(es), and call out global software explicitly:
 - **Headroom `[all]`** — `uv tool install "headroom-ai[all]"` (~2–3 GB, shared
   across harnesses; Apple Silicon best, graceful fallback on Intel)
 - **caveman** — `claude plugin marketplace add` / `claude plugin install`
-- **caveman-shrink** — `claude mcp add caveman-shrink -s user -- npx caveman-shrink`
 
 *Pi path:*
 - **Homebrew / uv / Headroom `[all]`** — same as above

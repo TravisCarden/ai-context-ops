@@ -54,14 +54,7 @@ claude plugin marketplace add JuliusBrussee/caveman
 claude plugin install caveman@caveman
 ```
 
-## 7. caveman-shrink (MCP tool-description compression)
-Register as a user-scoped MCP server. Check first:
-`claude mcp list | grep -qi caveman-shrink`.
-```
-claude mcp add caveman-shrink -s user -- npx caveman-shrink
-```
-
-## 8. Global context file
+## 7. Global context file
 Deploy `<repo-root>/stubs/global-context.md` → `~/.claude/CLAUDE.md`.
 - If absent: copy it.
 - If present: **do not overwrite** — notify the user and tell them to merge
@@ -73,6 +66,6 @@ For per-project context, point them at `<repo-root>/stubs/project-context.md`.
 headroom --version
 rtk --version
 claude plugin list        # caveman present
-claude mcp list           # caveman-shrink (and headroom/serena) present
+claude mcp list           # headroom/serena present
 ```
 Report a short summary of what was installed vs. skipped.

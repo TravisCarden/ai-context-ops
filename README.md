@@ -39,7 +39,6 @@ The setup prompt detects what you already have, shows you the full install plan,
 ╟------------------------------------------------------------╢
 ║  Headroom       — compresses results via MCP proxy         ║
 ║  RTK / pi-hypa  — filters CLI output noise before it lands ║
-║  caveman-shrink — shrinks MCP tool descriptions            ║
 ╠════════════════════════════════════════════════════════════╣
 ║  LAYER 3 · AGENT REPLIES                                   ║
 ╟------------------------------------------------------------╢
@@ -62,7 +61,6 @@ The setup prompt detects what you already have, shows you the full install plan,
 | [**pi-hypa**](https://github.com/Hypabolic/Hypa#readme) *(Pi)* | Tool results | Pi-native equivalent of RTK. Installed as a Pi plugin. |
 | [**LeanCTX**](https://leanctx.com) / [**pi-lean-ctx**](https://leanctx.com) | Input | AST-maps source files — agent reads a compact symbol map instead of raw file bytes. |
 | [**caveman**](https://github.com/JuliusBrussee/caveman) | Agent replies | Suppresses over-verbose agent responses. |
-| [**caveman-shrink**](https://github.com/JuliusBrussee/caveman) | Tool results | Compresses MCP tool descriptions (the schema overhead each tool carries). Registered as a user-scoped MCP server. |
 | **Serena** | Input | LSP-aware symbol search — bundled via Headroom. Lets the agent navigate code without `grep`/`cat` file dumps. |
 
 Most tools are **passive** — once installed, they intercept automatically. One
