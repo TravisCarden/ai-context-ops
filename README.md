@@ -9,6 +9,8 @@ redundant file reads, and repeated symbol discovery — each one crowding out th
 work that matters. This project installs and wires a set of lightweight tools
 that intercept those waste streams at the layer where they originate.
 
+![](banner.png)
+
 ---
 
 ## How it works
