@@ -19,8 +19,8 @@ The stack intercepts token waste at four points in every session:
 
 | Layer | Problem | Tools |
 |---|---|---|
-| **Input** | Agent reads raw file bytes and repeats symbol discovery | [LeanCTX](https://leanctx.com) (AST maps), Serena (LSP search), stubs (stable context files) |
-| **Tool results** | MCP and CLI output floods the context window | [Headroom](https://headroom-docs.vercel.app) (compresses tool outputs, DB results, file reads), [RTK](https://www.rtk-ai.app/) / [pi-hypa](https://github.com/Hypabolic/Hypa#readme) (filters CLI output) |
+| **Input** | Agent reads raw file bytes and repeats symbol discovery | [LeanCTX](https://leanctx.com) (AST maps), stubs (stable context files), Serena (LSP search, via Headroom) |
+| **Tool results** | MCP and CLI output floods the context window | [Headroom](https://headroom-docs.vercel.app) (compresses MCP results), [RTK](https://www.rtk-ai.app/) *(Claude Code)* / [pi-hypa](https://github.com/Hypabolic/Hypa#readme) *(Pi)* (filters CLI output) |
 | **Agent replies** | Agent responds with more words than the task needs | [caveman](https://github.com/JuliusBrussee/caveman) (verbosity suppression) |
 | **Cache** | Dynamic prefixes break provider-side prompt caching | Headroom durable hooks (keep prefix stable between turns) |
 
