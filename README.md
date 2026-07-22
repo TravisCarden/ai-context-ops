@@ -1,6 +1,7 @@
-# ai-context-ops
+# AI Context Ops
 
-Operational discipline for AI-agent context and token cost on macOS.
+Operational discipline for optimizing AI-agent context and token cost on macOS,
+with tools setup plus docs and playbooks. Work in-progress.
 
 **Status:** scaffold — see [`meta/STATUS.md`](meta/STATUS.md).
 
@@ -41,5 +42,3 @@ rest, with an option to accept the plan or abort before making changes.
 | [`playbooks/`](playbooks/) | Recipes for recurring tasks (new project, maintenance, …) |
 | [`docs/stack.md`](docs/stack.md) | How the stack works — layers, components, per-harness variance, active vs. passive |
 | [`meta/`](meta/) | Project decisions and status |
-
-
