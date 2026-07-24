@@ -4,7 +4,7 @@ Instructions for AI agents contributing to *this repo*. This file is also a
 living example of the project's own principles: terse, structured, no waste.
 
 ## Principles
-- **Prompt-primary.** [`setup.md`](setup.md) and [`diagnose.md`](diagnose.md) are the primary artifacts.
+- **Prompt-primary.** [`setup.md`](setup.md) and [`perf.md`](perf.md) are the primary artifacts.
   Deterministic commands live inside prompts as referenced snippets — there is
   no `install.sh`.
 - **Never duplicate an instruction** — duplication costs tokens on every run.

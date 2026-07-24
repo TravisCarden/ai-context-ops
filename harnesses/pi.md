@@ -36,7 +36,7 @@ command -v lean-ctx || [ -f ~/.cargo/bin/lean-ctx ] || [ -f /opt/homebrew/bin/le
 ```
 If missing, install via Homebrew (preferred — lands in a hardcoded path Pi can find):
 ```
-brew tap yvgude/lean-ctx && brew install lean-ctx
+brew tap yvgude/lean-ctx && brew trust yvgude/lean-ctx && brew install lean-ctx
 ```
 Or via cargo:
 ```

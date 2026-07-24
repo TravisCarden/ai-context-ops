@@ -51,7 +51,7 @@ After you've been using the stack for a while, run this in a fresh session to
 see how much each layer is saving and surface any configuration issues:
 
 ```
-Read https://raw.githubusercontent.com/TravisCarden/ai-context-ops/main/diagnose.md and follow it.
+Read https://raw.githubusercontent.com/TravisCarden/ai-context-ops/main/perf.md and follow it.
 ```
 
 ---
@@ -61,6 +61,6 @@ Read https://raw.githubusercontent.com/TravisCarden/ai-context-ops/main/diagnose
 | Path | What it is |
 |---|---|
 | [`setup.md`](setup.md) | **Start here** — the setup prompt you give your agent |
-| [`diagnose.md`](diagnose.md) | Measures token savings; helps debug the stack post-setup |
+| [`perf.md`](perf.md) | Measures token savings; helps debug the stack post-setup |
 | [`harnesses/`](harnesses/) | Per-agent setup steps called by [`setup.md`](setup.md) |
 | [`stubs/`](stubs/) | Starter templates for global and per-project context files |

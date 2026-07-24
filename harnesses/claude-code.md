@@ -34,7 +34,7 @@ graceful fallback on Intel. Verify: `headroom --version`.
 Registers durable hooks + provider routing (this also covers Serena — do not
 register Serena separately).
 ```
-headroom init claude
+headroom init --global claude
 ```
 Idempotent by design; safe to re-run.
 

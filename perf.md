@@ -1,4 +1,4 @@
-# diagnose.md — measurement & debugging prompt
+# perf.md — measurement & debugging prompt
 
 > Your AI coding agent reads this and follows it. Run it in a fresh session
 > after setup, and periodically thereafter.

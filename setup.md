@@ -62,7 +62,8 @@ install for their chosen harness(es), and call out global software explicitly:
 - **rtk** — `brew install rtk` (output filtering; drops `~/.claude/RTK.md` + hook)
 - **uv** — `brew install uv` (Python tool manager, for Headroom)
 - **Headroom `[all]`** — `uv tool install "headroom-ai[all]"` (~2–3 GB, shared
-  across harnesses; Apple Silicon best, graceful fallback on Intel)
+  across harnesses; Apple Silicon best, graceful fallback on Intel); wired via
+  `headroom init --global claude`
 - **caveman** — `claude plugin marketplace add` / `claude plugin install`
 
 *Pi path:*
@@ -93,7 +94,7 @@ After setup, confirm each installed piece responds (e.g. `headroom --version`,
 `rtk --version`, `claude mcp list`, `pi config -l`). Then tell the user:
 
 - To measure effectiveness or debug savings later, in a fresh session:
-  `Read https://raw.githubusercontent.com/TravisCarden/ai-context-ops/main/diagnose.md and follow it`.
+  `Read https://raw.githubusercontent.com/TravisCarden/ai-context-ops/main/perf.md and follow it`.
 
 **If you created the temp clone in Step 0**, remove it now:
 ```
