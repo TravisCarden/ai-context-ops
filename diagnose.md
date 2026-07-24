@@ -18,7 +18,7 @@ in order.
 Run these commands and capture their output:
 
 ```
-headroom stats
+headroom perf
 rtk gain          # Claude Code only — skip if not present
 ```
 
@@ -50,16 +50,17 @@ which layer is contributing the most?
 ## Step 3 — Diagnose a broken cache prefix
 
 If the Headroom cache hit rate is low (under 40%), or sessions feel slower and
-costlier than expected, run:
+costlier than expected, re-run:
 
 ```
-headroom debug prefix
+headroom perf
 ```
 
-Look for:
+Look at the "Unstable" count and the "First 5 avg" vs "Last 5 avg" rows. A high
+unstable count or persistently low hit rate points to a dynamic element in the
+prefix. Look for:
 - Dynamic timestamps, random IDs, or session tokens appearing in the prefix
 - Tool descriptions that change between turns
-- Caveman-shrink not registered (check `claude mcp list` or equivalent)
 
 If a dynamic element is found: identify its source (which tool, which config
 file) and either remove it or move it after the stable prefix region. After
