@@ -83,7 +83,9 @@ claude mcp list           # should include: headroom/serena
 **Pi:**
 ```
 headroom --version
-pi config -l              # should include: pi-hypa, pi-lean-ctx, pi-caveman, pi-headroom
+lean-ctx --version
+cat ~/.pi/agent/extensions/pi-lean-ctx/config.json   # binary path present
+pi config -l          # should include: pi-hypa, pi-lean-ctx, pi-caveman, pi-headroom
 ```
 
 For any missing component, re-run the relevant section of the setup harness

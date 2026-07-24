@@ -67,7 +67,8 @@ install for their chosen harness(es), and call out global software explicitly:
 
 *Pi path:*
 - **Homebrew / uv / Headroom `[all]`** — same as above
-- **pi-hypa, pi-lean-ctx, pi-caveman, pi-headroom** — via `pi install npm:…`
+- **lean-ctx binary** — `brew install lean-ctx` (or `cargo install lean-ctx`), then binaryOverride config
+- **pi-hypa, pi-lean-ctx, pi-caveman, pi-headroom** — via `pi install npm:…` (pi-lean-ctx after binary)
 
 Skip anything Step 1 found already present. Then ask once: **Proceed? [Y/n]**.
 If the user declines, stop cleanly. Re-running later is safe (idempotent).

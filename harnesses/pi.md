@@ -28,25 +28,54 @@ uv tool install --python 3.13 "headroom-ai[all]"
 `[all]` includes neural (Kompress) compression. ~2–3 GB; Apple Silicon best,
 graceful fallback on Intel. Requires Python ≥ 3.10. Verify: `headroom --version`.
 
-## 4. Pi plugins via `pi install`
-Install only the ones Step 1 reported missing:
+## 4. lean-ctx binary
+`pi-lean-ctx` is a bridge only — it requires the `lean-ctx` Rust binary separately.
+Check first:
+```
+command -v lean-ctx || [ -f ~/.cargo/bin/lean-ctx ] || [ -f /opt/homebrew/bin/lean-ctx ]
+```
+If missing, install via Homebrew (preferred — lands in a hardcoded path Pi can find):
+```
+brew tap yvgude/lean-ctx && brew install lean-ctx
+```
+Or via cargo:
+```
+cargo install lean-ctx
+```
+Verify: `lean-ctx --version`.
+
+Then write the binaryOverride config so Pi can find the binary regardless of
+whether it inherits shell PATH (macOS GUI apps launched outside the terminal
+often don't):
+```
+mkdir -p ~/.pi/agent/extensions/pi-lean-ctx
+echo "{\"binary\": \"$(which lean-ctx)\"}" > ~/.pi/agent/extensions/pi-lean-ctx/config.json
+```
+If `~/.pi/agent/extensions/pi-lean-ctx/config.json` already exists: **do not
+overwrite** — notify the user to verify the `binary` path manually.
+
+## 5. Pi plugins via `pi install`
+Install only the ones Step 1 reported missing. **`pi-lean-ctx` must come after
+the `lean-ctx` binary is installed (step 4 above).**
 ```
 pi install npm:@hypabolic/pi-hypa   # output filtering (RTK equivalent for Pi)
-pi install npm:pi-lean-ctx          # LeanCTX, first-party context compression
+pi install npm:pi-lean-ctx          # LeanCTX bridge (requires lean-ctx binary)
 pi install npm:pi-caveman           # output verbosity
 pi install npm:pi-headroom          # Headroom integration
 ```
 
-## 5. Global context file
+## 6. Global context file
 Deploy `<repo-root>/stubs/global-context.md` → `~/.pi/agent/AGENTS.md`.
 - If absent: copy it.
 - If present: **do not overwrite** — notify the user and tell them to merge
   `<repo-root>/stubs/global-context.md` manually.
 For per-project context, point them at `<repo-root>/stubs/project-context.md`.
 
-## 6. Verify
+## 7. Verify
 ```
 headroom --version
+lean-ctx --version
+cat ~/.pi/agent/extensions/pi-lean-ctx/config.json   # binary path present
 pi config -l          # plugins visible
 ```
 Report a short summary of what was installed vs. skipped.
